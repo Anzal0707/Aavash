@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-7#3jb9sd-&c8jxpx$q1_m5s+$t1e4rd%nzwp23q8r-380csr@=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['medica-ru4j.onrender.com', 'localhost', '127.0.0.1:8000']
 
 
 # Application definition
