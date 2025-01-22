@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Medica</title>
+    
+    {% load static %}
+    <link href="{% static 'css/profile.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+
+    <section class="header-uper">
+        <div class="container clearfix">
+              <div class="logo">
+                    <figure>
+                          <a href="index.html">
+                                <img src="/static/images/logo.png" alt="" width="130">
+                          </a>
+                    </figure>
+              </div>
+              <div class="right-side">
+                    <ul class="contact-info">
+                          <li class="item">
+                                <div class="icon-box">
+                                      <i class="fa fa-envelope-o"></i>
+                                </div>
+                                <strong>Email</strong>
+                                <br>
+                                <a href="#">
+                                      <span>info@medica.com</span>
+                                </a>
+                          </li>
+                          <li class="item">
+                                <div class="icon-box">
+                                      <i class="fa fa-phone"></i>
+                                </div>
+                                <strong>Call Now</strong>
+                                <br>
+                                <span>+ (977) - 9746353958</span>
+                          </li>
+                    </ul>
+                   
+              </div>
+        </div>
+  </section>
+    <!--Page Title-->
+  <section class="page-title text-center" style="background-image:url(/static/images/background/3.jpg);">
+      <div class="container">
+          <div class="title-text">
+              <h1>Profile</h1>
+              <ul class="title-menu clearfix">
+                <li>
+                    <a href="{% url 'home' %}">home &nbsp;/</a>
+                </li>
+                <li>Profile</li>
+            </ul>
+          </div>
+      </div>
+  </section>
+<!--End Page Title-->
+<section class="profile-page">
+    
+    <div class="container">
+        <!-- Profile Image -->
+        <div class="profile-image-container">
+            <img 
+                id="profileImage"
+                src="{% if user.socialaccount_set.exists %} 
+                        {% if user.socialaccount_set.first.extra_data.picture %} 
+                            {{ user.socialaccount_set.first.extra_data.picture }} 
+                        {% else %}
+                            /static/img/default-profile.png
+                        {% endif %}
+                      {% else %}
+                        {% if user.profile.profile_image %} 
+                            {{ user.profile.profile_image.url }} 
+                        {% else %}
+                            /static/images/default-user.png
+                        {% endif %}
+                      {% endif %}" 
+                alt="Profile Image" 
+                class="profile-image"
+            >
+        </div>
+        
+
+        <!-- User Email -->
+        <div class="email-box">
+            <p>Your email: {{ user.email }}</p>
+        </div>
+
+        <!-- Appointment Details -->
+        <div class="appointments-box">
+            <h3>Your Appointments:</h3>
+        
+            <!-- All Appointments -->
+            {% if appointments %}
+        <ul id="appointments-list">
+            {% for appointment in appointments %}
+                <li data-department="{{ appointment.department }}" data-date="{{ appointment.date }}" data-time="{{ appointment.scheduled_time }}" data-status="{{ appointment.confirmed }}">
+                    <strong>Department:</strong> {{ appointment.department }} <br>
+                    <strong>Date:</strong> {{ appointment.date }} <br>
+                    <strong>Time:</strong> {{ appointment.scheduled_time }} <br>
+                    <strong>Status:</strong> 
+                    {% if appointment.confirmed %}
+                    <span class="status-confirmed">Confirmed</span>
+
+                        <button class="download-btn">
+                            Download Details
+                        </button>
+                    {% else %}
+                    <span class="status-pending">Pending</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have no appointments yet.</p>
+    {% endif %}
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const userName = "{{ user.first_name }} {{ user.last_name }}";
+        const userEmail = "{{ user.email }}";
+        const defaultText = "Your Appointment Details:";
+       
+        const downloadButtons = document.querySelectorAll(".download-btn");
+        downloadButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                const listItem = this.closest("li");
+                const department = listItem.getAttribute("data-department");
+                const date = listItem.getAttribute("data-date");
+                const time = listItem.getAttribute("data-time");
+                const status = listItem.getAttribute("data-status") === "True" ? "Confirmed" : "Pending";
+
+                const fileContent = `
+${defaultText}
+
+Name: ${userName}
+Email: ${userEmail}
+
+Department: ${department}
+Date: ${date}
+Time: ${time}
+Status: ${status}
+                `.trim();
+
+                // Generate content for the download
+                const blob = new Blob([fileContent], { type: "text/plain" });
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
+                link.download = `appointment_${date}.txt`;
+                link.click();
+            });
+        });
+    });
+</script>
+        
+        <!-- Book Appointment Button -->
+        <div class="book-appointment-container">
+            <a href="{% url 'appointment' %}" class="button book-button">
+                <img src="{% static 'images/book.jpg' %}" alt="Book Appointment">
+        
+            </a>
+        </div>
+        
+        <!-- Follow-Up Details -->
+        <div class="follow-up">
+            <h3>Follow-Up Details:</h3>
+            <ul>
+                {% for followup in user.followup_set.all %}
+                    <li>{{ followup.details }} - Date: {{ followup.date }}</li>
+                {% empty %}
+                    <li>No follow-up details available.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!-- Report Posting Section -->
+        <div class="report-container">
+            <h3>Report:</h3>
+            {% if user.reports.exists %}
+                <ul>
+                    {% for report in user.reports.all %}
+                        <li>
+                            {% if report.image %}
+                                <img src="{{ report.image.url }}" alt="Report Image" class="report-image">
+                                <a href="{{ report.image.url }}" download>Download Report</a>
+                            {% else %}
+                                <p>No report image available.</p>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No report available for this user.</p>
+            {% endif %}
+        </div>
+
+
+        <!-- Logout Button -->
+        <a href="{% url 'logout' %}" class="button logout-button">Logout</a>
+    </div>
+</section>
+    
+<!--footer-main-->
+<div class="footer-bottom">
+    <div class="container clearfix">
+      <div class="copyright-text">
+        <p>&copy; Copyright 2025. All Rights Reserved by
+          <a href="{% url 'home' %}">Medica</a>
+        </p>
+      </div>
+      <ul class="footer-bottom-link">
+        <li>
+            <a href="{% url 'home' %}">Home</a>
+        </li>
+        <li>
+            <a href="{% url 'about' %}">About</a>
+        </li>
+        <li>
+            <a href="{% url 'contact' %}">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<!--End footer-main-->
+
+</div>
+<!--End pagewrapper-->
+
+</body>
+</html>

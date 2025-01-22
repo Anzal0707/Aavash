@@ -1,0 +1,87 @@
+{% extends "admin/base_site.html" %}
+
+{% block title %}Medica Admin Panel{% endblock %}
+{% load static %}
+{% block extrastyle %}
+    <style>
+        /* General body styling for the admin panel */
+        body.admin {
+            background-color: #f5f7fa;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Header bar customization */
+        #header {
+            background-color: #0e2e65;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Highlighting "Medica" at the top with a custom font */
+        #header-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 32px;
+            color: #1056c0;
+            margin-left: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Customizing the admin logout, view site, and username display */
+        #user-tools {
+            color: #ecf0f1;
+            font-size: 14px;
+        }
+
+        /* Sidebar customization */
+        #sidebar {
+            background-color: #34495e;
+            color: #ecf0f1;
+            padding: 20px;
+        }
+
+        .nav-sidebar li a {
+            color: #ecf0f1;
+            padding: 10px 15px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* Button styling */
+        .button {
+            background-color: #1abc9c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #16a085;
+        }
+
+        /* Footer styling */
+        #footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #132646;
+            color: #ecf0f1;
+            font-size: 14px;
+        }
+    </style>
+{% endblock %}
+
+{% block branding %}
+<img src="{% static 'images/logo-2.png' %}" alt="Medica Logo" id="logo">
+{% endblock %}
+
+{% block footer %}
+    <div id="footer">
+        <p>&copy; {{ current_year }} Medica Admin Panel. All rights reserved.</p>
+    </div>
+{% endblock %}

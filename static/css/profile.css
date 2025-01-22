@@ -1,0 +1,252 @@
+
+.profile-page {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9; /* Light background for contrast */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container {
+      max-width: 800px;
+      margin: 0 auto;
+  }
+  .profile-page h3 {
+    font-family: 'Arial', sans-serif;
+    color: #2c3e50;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: left;
+    border-bottom: 2px solid #4c95af;
+    padding-bottom: 5px;
+}
+
+.profile-page ul,
+.profile-page p {
+    font-family: 'Verdana', sans-serif;
+    color: #34495e;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.profile-page ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.profile-page ul li {
+    margin-bottom: 8px;
+    padding: 8px;
+    background: #f9f9f9;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+
+.report-container a {
+    color: #61c4cd;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+
+  
+  .profile-image-container {
+      text-align: center;
+      margin-bottom: 20px;
+  }
+  
+  .profile-image {
+      width: 150px; /* Set a fixed width */
+      height: 150px; /* Set a fixed height */
+      border-radius: 50%; /* Circular image */
+      border: 3px solid #4a90e2; /* Blue border */
+      object-fit: cover; /* Ensures image covers the area */
+  }
+  
+  .email-box {
+      font-size: 18px;
+      color: #0e0a0a; /* Darker text color */
+      margin-bottom: 20px;
+      text-align: center;
+  }
+  
+  .appointments-box, .follow-up {
+      background-color: #ffffff; /* White background for details */
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  h3 {
+      color: #4a90e2; /* Blue color for headings */
+  }
+  
+  ul {
+      list-style-type: none; /* Remove default list styling */
+      padding: 0;
+  }
+  
+  li {
+      padding: 5px 0; /* Space between items */
+      border-bottom: 1px solid #ccc; /* Divider line */
+  }
+  
+  li:last-child {
+      border-bottom: none; /* No border for last item */
+  }
+
+  .status-confirmed {
+    color: green;
+    font-weight: bold;
+  }
+
+  .status-pending {
+    color: orange;
+    font-weight: bold;
+}
+  .button {
+      display: inline-block;
+      padding: 8px 12px;
+      background-color: #4a90e2; /* Blue background */
+      color: white; /* White text */
+      text-decoration: none;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
+  }
+  
+  .book-appointment-btn:hover {
+      background-color: #357ab8; 
+      color: white;
+      
+  }
+  
+  
+  .book-appointment-container {
+      text-align: center; 
+      margin-top: 20px;
+      margin-bottom: 30px; 
+      
+  }
+
+  .book-appointment-container:hover {
+    transform: scale(1.05);
+  }
+  
+  .download-btn {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 2rem;
+    cursor: pointer;
+    padding-right: 20px;
+    margin-left: 300px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    display: inline-block; /* Ensure it's inline with other content */
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.download-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.download-btn:active {
+    transform: scale(1);
+}
+/* Report Container */
+.report-container {
+    margin-top: 30px;
+    background-color: #ffffff;
+    padding: 20px;   
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;   
+}
+
+/* Report Item Styling */
+.report-container ul {
+    padding: 0;
+    margin: 0;
+}
+
+.report-container li {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.report-container li p {
+    font-size: 14px;
+    color: #666;
+}
+
+.report-container .report-image {
+    width: 120px;  /* Adjust the image size */
+    height: 120px;  /* Adjust the image size */
+    object-fit: cover;  /* Ensures the image covers the area without distortion */
+    border-radius: 8px;  /* Optional: Add a border radius for a rounded effect */
+}
+
+/* If no report image is available */
+.report-container li p {
+    font-style: italic;
+    color: #999;
+}
+
+.report-container a {
+    display: inline-block;
+    margin-top: 10px;
+    margin-right: 40px;
+    padding: 8px 15px;
+    background-color: #1b9abd;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.report-container a:hover {
+    background-color: #0d748e;
+    color: white;
+    transform: scale(1.05);
+}
+
+.report-container a:active {
+    background-color: #5d9dae;
+    transform: scale(0.95);
+}
+
+
+.logout-button {
+    display: block;
+    margin: 20px auto;
+    background-color: rgba(204, 16, 16, 0.749);
+    color: white;
+    padding: 15px 30px; /* Increased padding */
+    font-size: 18px; /* Increased font size */
+    border-radius: 5px;
+    text-align: center;
+    width: 200px; /* Fixed width */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+  
+.logout-button:hover {
+      background-color: #c61426; /* Red background */
+      color: white; 
+      transform: scale(1.05);
+ }
+
+ 

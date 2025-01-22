@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Medic | Medical HTML Template</title>
+
+  
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <!-- Slick Carousel -->
+  {% load static %}
+
+<link rel="stylesheet" href="{% static 'plugins/slick/slick.css' %}">
+<link rel="stylesheet" href="{% static 'plugins/slick/slick-theme.css' %}">
+
+<!-- FancyBox -->
+<link rel="stylesheet" href="{% static 'plugins/fancybox/jquery.fancybox.min.css' %}">
+
+<!-- Stylesheets -->
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+<!-- Favicon -->
+<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+<link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+</head>
+
+
+<body>
+  <div class="page-wrapper">
+    <!-- Preloader -->
+    <!-- <div class="preloader"></div> -->
+    <!-- Preloader -->
+
+  
+
+<!--header top-->
+<div class="header-top">
+      <div class="container clearfix">
+            <div class="top-left">
+                  <h6>Opening Hours : Saturday to Tuesday - 8am to 10pm</h6>
+            </div>
+            <div class="top-right">
+                  <ul class="social-links">
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-google-plus" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                  </ul>
+                  {% if user.is_authenticated %}
+    <div class="user-profile">
+        <a href="{% url 'account_logout' %}">
+            <!-- Check if user has social account profile image or custom profile image -->
+            <img src="{% if user.socialaccount_set.exists %} 
+                        {% if user.socialaccount_set.first.extra_data.picture %} 
+                            {{ user.socialaccount_set.first.extra_data.picture }} 
+                        {% else %}
+                            /static/images/default-user.png
+                        {% endif %}
+                      {% else %}
+                        {% if user.profile.profile_image %}
+                            {{ user.profile.profile_image.url }}
+                        {% else %}
+                            /static/images/default-user.png
+                        {% endif %}
+                      {% endif %}" 
+                 alt="Profile" class="profile-pic">
+        </a>
+        <span>{{ user.first_name }}</span>
+    </div>
+{% else %}
+    <a href="{% url 'login' %}" class="btn-style-one">Login</a>
+{% endif %}
+            </div>
+      </div>
+</div>
+<!--header top-->
+
+<!--Header Upper-->
+<section class="header-uper">
+      <div class="container clearfix">
+            <div class="logo">
+                  <figure>
+                        <a href="index.html">
+                              <img src="/static/images/logo.png" alt="" width="130">
+                        </a>
+                  </figure>
+            </div>
+            <div class="right-side">
+                  <ul class="contact-info">
+                        <li class="item">
+                              <div class="icon-box">
+                                    <i class="fa fa-envelope-o"></i>
+                              </div>
+                              <strong>Email</strong>
+                              <br>
+                              <a href="#">
+                                    <span>info@medica.com</span>
+                              </a>
+                        </li>
+                        <li class="item">
+                              <div class="icon-box">
+                                    <i class="fa fa-phone"></i>
+                              </div>
+                              <strong>Call Now</strong>
+                              <br>
+                              <span>+ (977) - 9746353958</span>
+                        </li>
+                  </ul>
+                  <div class="link-btn">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'profile' %}" class="btn-style-one">Dashboard</a>
+                        <div class="user-profile"></div>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn-style-one">Appointment</a>
+                    {% endif %}
+                </div>
+            </div>
+      </div>
+</section>
+<!--Header Upper-->
+
+
+<!--Main Header-->
+<nav class="navbar navbar-default">
+      <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                        aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                  </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                        <li class="active">
+                              <a href="{% url 'home' %}">Home</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'about' %}">About</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'service' %}">Service</a>
+                                </li>
+                                
+                                <li>
+                                    <a href="{% url 'team' %}">Team</a>
+                                </li>
+                                
+                                <li>
+                                    <a href="{% url 'blog' %}">Blog</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'contact' %}">Contact</a>
+                                </li>
+                  </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+</nav>
+<!--End Main Header -->
+
+<!--Page Title-->
+<section class="page-title text-center" style="background-image:url(/static/images/background/3.jpg);">
+  <div class="container">
+      <div class="title-text">
+          <h1>appointment</h1>
+          <ul class="title-menu clearfix">
+            <li>
+                <a href="{% url 'home' %}">home &nbsp;/</a>
+            </li>
+            <li>Appointment</li>
+        </ul>
+      </div>
+  </div>
+</section>
+<!--End Page Title-->
+<!-- Contact Section -->
+<section class="blog-section section style-three pb-0">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6 col-sm-12 col-xs-12">
+              <div class="contact-area style-two">
+                  <div class="section-title">
+                      <h3>Request <span>Appointment</span></h3>
+                  </div>
+                  <form id="appointment-form" method="POST" action="{% url 'appointment' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <input type="text" name="name" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Email" value="{{ user.email }}" {% if user.is_authenticated %}readonly{% endif %} required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="phone" placeholder="Phone" required>
+                    </div>
+                    <div class="form-group">
+                      <select name="department" required>
+                      <option value="" disabled selected>Choose a Department</option>
+                      <option value="Diagnostic">Diagnostic - NPR 1,000</option>
+                      <option value="Psychological">Psychological - NPR 1,500</option>
+                      <option value="Orthopedics">Orthopedics - NPR 2,500</option>
+                      <option value="General">General - NPR 800</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="payment-method">Choose Payment Method:</label>
+                      <select id="payment-method" name="payment-method" required>
+                        <option value="" disabled selected>Select a Payment Gateway</option>
+                        <option value="esewa">eSewa</option>
+                        <option value="khalti">Khalti</option>
+                        <option value="connectips">ConnectIPS</option>
+                        <option value="fonepay">IMEpay</option>
+                      </select>
+                    </div>
+                    
+                    <!-- QR Code Container -->
+                    <div id="qr-code-container" class="form-group text-center" style="margin-top: 20px;">
+                      <p>Please select a payment method to view the QR code.</p>
+                    </div>
+                    <div class="form-group">
+                      <label for="payment-proof">Upload Payment Proof :</label>
+                      <input type="file" id="payment-proof" name="payment_proof" accept="image/*" required>
+                  </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Your message" required></textarea>
+                    </div>
+                    <div class="form-group text-center">
+                    <button type="submit" class="btn-style-one">Submit Now</button>
+                  </div>
+                  </form>
+                  <div id="loading-container" style="display:none; text-align:center;">
+                    <video id="loading-video" width="100%" autoplay loop muted>
+                        <source src="{% static 'videos/loading.mp4' %}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>Updating Your Profile...</p>
+                  </div>
+                  <div id="message-container"></div>
+                  
+                </div>     
+              </div>            
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                  <div class="appointment-image-holder">
+                      <figure>
+                          <img src="/static/images/background/appoinment.jpg" alt="Appointment">
+                      </figure>
+                  </div>                       
+              </div>
+          </div>                    
+      </div>
+      
+  </section>
+  <script>
+    document.getElementById("appointment-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+  
+      {% if not user.is_authenticated %}
+        var messageContainer = document.getElementById("message-container");
+        messageContainer.innerHTML = "<p style='color: red;'>Login to request appointment</p>";
+        setTimeout(function() {
+          window.location.href = "{% url 'login' %}";
+        }, 3200);
+        return;
+      {% endif %}
+  
+      var formData = new FormData(this);
+  
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "{% url 'appointment' %}", true);
+      xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+  
+      xhr.onload = function() {
+        var messageContainer = document.getElementById("message-container");
+  
+        if (xhr.status === 200) {
+          messageContainer.innerHTML = `
+                    <div>
+                <p style="color: green;">Success! Your request is submitted.</p>
+                <p style="color: red;">Updating your profile...</p>
+                <video autoplay loop muted style="max-width: 400px; height: auto; margin-top: 10px; border-radius: 20%;">
+                    <source src="{% static 'videos/loading.mp4' %}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        `;
+          document.getElementById("appointment-form").reset();
+  
+          setTimeout(function() {
+            window.location.href = "{% url 'profile' %}";
+          }, 5000);
+        } else {
+          messageContainer.innerHTML = "<p style='color: red;'>There was an error with your submission. Please try again.</p>";
+          document.getElementById("loading-container").style.display = "none";
+        }
+      };
+  
+      xhr.send(formData);
+    });
+
+    document.getElementById("payment-method").addEventListener("change", function () {
+      const selectedPayment = this.value; // Get selected payment method
+      const qrCodeContainer = document.getElementById("qr-code-container");
+  
+      // Clear existing content
+      qrCodeContainer.innerHTML = "";
+  
+      // Map of payment methods to their QR code images
+      const qrCodeImages = {
+        esewa: "/static/images/payment/esewa-qr.png",
+        khalti: "/static/images/payment/khalti-qr.png",
+        connectips: "/static/images/payment/connectips-qr.png",
+        fonepay: "/static/images/payment/IMEpay-qr.png",
+      };
+  
+      if (selectedPayment in qrCodeImages) {
+        // Add the QR code image dynamically
+        const img = document.createElement("img");
+        img.src = qrCodeImages[selectedPayment];
+        img.alt = `${selectedPayment} QR Code`;
+        img.style.width = "200px"; 
+        img.style.height = "200px"; 
+        img.style.border = "1px solid #ccc";
+        img.style.borderRadius = "10px";
+        img.style.marginTop = "10px";
+        img.style.marginRight = "20px";
+        img.style.display = "inline-block";
+
+
+        const downloadButton = document.createElement("button");
+        downloadButton.textContent = "Download QR Code";
+        downloadButton.style.marginTop = "20px";
+        downloadButton.style.padding = "5px 10px";
+        downloadButton.style.cursor = "pointer";
+        downloadButton.style.backgroundColor = "#4a90e2";
+        downloadButton.style.color = "white";
+        downloadButton.style.border = "none";
+        downloadButton.style.borderRadius = "5px";
+        downloadButton.style.width = "auto";
+        downloadButton.style.display = "inline-block";
+
+        downloadButton.onmouseover = function() {
+          downloadButton.style.backgroundColor = "#357ab8"; 
+        };
+        
+        downloadButton.onmouseout = function() {
+          downloadButton.style.backgroundColor = "#4a90e2"; 
+        };
+        
+            
+        downloadButton.addEventListener("click", function () {
+          const a = document.createElement("a");
+          a.href = img.src;
+          a.download = `${selectedPayment}-qr.png`; 
+          a.click(); 
+        });
+
+        qrCodeContainer.innerHTML = ""; 
+        qrCodeContainer.style.textAlign = "center"; 
+        qrCodeContainer.style.display = "flex"; 
+        qrCodeContainer.style.alignItems = "center"; 
+        qrCodeContainer.style.justifyContent = "center"; 
+
+        qrCodeContainer.appendChild(img); 
+        qrCodeContainer.appendChild(downloadButton); 
+      } else {
+        qrCodeContainer.innerHTML = "<p>Please select a valid payment method.</p>";
+      }
+    });
+  </script>
+  
+
+<!--End team section-->
+
+<!--footer-main-->
+<footer class="footer-main">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="about-widget">
+            <div class="footer-logo">
+              <figure>
+                <a href="{% url 'home' %}">
+                  <img src="/static/images/logo-2.png" alt="">
+                </a>
+              </figure>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, temporibus?</p>
+            <ul class="location-link">
+              <li class="item">
+                <i class="fa fa-map-marker"></i>
+                <p>Birtamode, Jhapa, Nepal</p>
+              </li>
+              <li class="item">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                <a href="#">
+                  <p>Support@medica.com</p>
+                </a>
+              </li>
+              <li class="item">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <p>(+977)-9746353958</p>
+              </li>
+            </ul>
+            <ul class="list-inline social-icons">
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+              <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <h6>Services</h6>
+          <ul class="menu-link">
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Orthopadic Liabilities</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Dental Clinic</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Dormamu Clinic</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Psycological Clinic</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Gynaecological Clinic</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="social-links">
+            <h6>Developers</h6>
+            <ul>
+              <li class="item">
+                <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      <img class="media-object" src="/static/images/dev/Bishal.jpg" alt="post-thumb">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading"><a href="#">Bishal Kumar Shah</a></h4>
+                    <p>Contribution: Frontend</p>
+                  </div>
+                </div>
+              </li>
+              <li class="item">
+                <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      <img class="media-object" src="/static/images/dev/Anjal.jpg" alt="post-thumb">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">
+                      <a href="#">Anjal Rajbanshi</a>
+                    </h4>
+                    <p>Contribution: Backend </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container clearfix">
+      <div class="copyright-text">
+        <p>&copy; Copyright 2018. All Rights Reserved by
+          <a href="index.html">Medic</a>
+        </p>
+      </div>
+      <ul class="footer-bottom-link">
+            <li>
+                  <a href="{% url 'home' %}">Home</a>
+              </li>
+              <li>
+                  <a href="{% url 'about' %}">About</a>
+              </li>
+              <li>
+                  <a href="{% url 'contact' %}">Contact</a>
+              </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<!--End footer-main-->
+
+</div>
+<!--End pagewrapper-->
+
+
+<!--Scroll to top-->
+<div class="scroll-to-top scroll-to-target" data-target=".header-top">
+  <span class="icon fa fa-angle-up"></span>
+</div>
+
+{% load static %}
+<script src="{% static 'plugins/jquery.js' %}"></script>
+<script src="{% static 'plugins/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-select.min.js' %}"></script>
+<!-- Slick Slider -->
+<script src="{% static 'plugins/slick/slick.min.js' %}"></script>
+<!-- FancyBox -->
+<script src="{% static 'plugins/fancybox/jquery.fancybox.min.js' %}"></script>
+<!-- Google Maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+<script src="{% static 'plugins/google-map/gmap.js' %}"></script>
+<script src="{% static 'plugins/validate.js' %}"></script>
+<script src="{% static 'plugins/wow.js' %}"></script>
+<script src="{% static 'plugins/jquery-ui.js' %}"></script>
+<script src="{% static 'plugins/timePicker.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

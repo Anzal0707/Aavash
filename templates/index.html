@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Medica | Medical HTML Template</title>
+
+  
+ <!-- Mobile responsive meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- Slick Carousel -->
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'plugins/slick/slick.css' %}">
+<link rel="stylesheet" href="{% static 'plugins/slick/slick-theme.css' %}">
+
+<!-- FancyBox -->
+<link rel="stylesheet" href="{% static 'plugins/fancybox/jquery.fancybox.min.css' %}">
+
+<!-- Stylesheets -->
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+<!-- Favicon -->
+<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+<link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+</head>
+
+
+<body>
+  <div class="page-wrapper">
+    <!-- Preloader -->
+    <!-- <div class="preloader"></div> -->
+    <!-- Preloader -->
+
+  
+
+<!--header top-->
+<div class="header-top">
+      <div class="container clearfix">
+            <div class="top-left">
+                  <h6>Opening Hours : Sunday to Friday - 8am to 10pm</h6>
+            </div>
+            <div class="top-right">
+                  <ul class="social-links">
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-google-plus" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                  </ul>
+                  
+                  {% if user.is_authenticated %}
+                    <div class="user-profile">
+                        <a href="{% url 'account_logout' %}">
+                            <!-- Check if user has social account profile image or custom profile image -->
+                            <img src="{% if user.socialaccount_set.exists %} 
+                                        {% if user.socialaccount_set.first.extra_data.picture %} 
+                                            {{ user.socialaccount_set.first.extra_data.picture }} 
+                                        {% else %}
+                                            /static/images/default-user.png
+                                        {% endif %}
+                                      {% else %}
+                                        {% if user.profile.profile_image %}
+                                            {{ user.profile.profile_image.url }}
+                                        {% else %}
+                                            /static/images/default-user.png
+                                        {% endif %}
+                                      {% endif %}" 
+                                 alt="Profile" class="profile-pic">
+                        </a>
+                                <span>{{ user.first_name }}</span>
+                            </div>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="btn-style-one">Login</a>
+                        {% endif %}
+
+                  </div>
+            </div>
+      </div>
+<!--header top-->
+
+<!--Header Upper-->
+<section class="header-uper">
+      <div class="container clearfix">
+            <div class="logo">
+                  <figure>
+                        <a href="index.html">
+                              <img src="/static/images/logo.png" alt="" width="130">
+                        </a>
+                  </figure>
+            </div>
+            <div class="right-side">
+                  <ul class="contact-info">
+                        <li class="item">
+                              <div class="icon-box">
+                                    <i class="fa fa-envelope-o"></i>
+                              </div>
+                              <strong>Email</strong>
+                              <br>
+                              <a href="#">
+                                    <span>info@medica.com</span>
+                              </a>
+                        </li>
+                        <li class="item">
+                              <div class="icon-box">
+                                    <i class="fa fa-phone"></i>
+                              </div>
+                              <strong>Call Now</strong>
+                              <br>
+                              <span>+ (977) - 9746353958</span>
+                        </li>
+                  </ul>
+                  
+                  <div class="link-btn">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'profile' %}" class="btn-style-one">Dashboard</a>
+                        <div class="user-profile"></div>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn-style-one">Appointment</a>
+                    {% endif %}
+                </div>
+            </div>
+      </div>
+</section>
+<!--Header Upper-->
+
+
+<!--Main Header-->
+<nav class="navbar navbar-default">
+      <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                        aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                  </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav ">
+    
+                        <li class="active">
+                            <a href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'about' %}">About</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'service' %}">Service</a>
+                        </li>
+            
+                        <li>
+                            <a href="{% url 'team' %}">Team</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'appointment' %}">Appointment</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'blog' %}">Blog</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'contact' %}">Contact</a>
+                        </li>
+                
+                
+                    
+            </div>
+            <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+</nav>
+<!--End Main Header -->
+
+<!--=================================
+=            Page Slider            =
+==================================-->
+<div class="hero-slider">
+    <!-- Slider Item -->
+    <div class="slider-item slide1" style="background-image:url(/static/images/slider/slider-bg-1.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Slide Content Start -->
+                    <div class="content style text-center">
+                        <h2 class="text-white text-bold mb-2">Our Best Doctors</h2>
+                        <p class="tag-text mb-5">Where Expertise Meets Compassion – Our Doctors Are Here for You. <br>
+                            Bringing You the Best in Healthcare</p>
+                        <a href="{% url 'team' %}" class="btn btn-main btn-white">explore</a>
+                    </div>
+                    <!-- Slide Content End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Slider Item -->
+    <div class="slider-item" style="background-image:url(/static/images/slider/slider-bg-2.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Slide Content Start-->
+                    <div class="content style text-right">
+                        <h2 class="text-white">We Care About <br>Your Health</h2>
+                        <p class="tag-text">Partnering with You for a Healthier Tomorrow. </p>
+                        <a href="{% url 'about' %}" class="btn btn-main btn-white">about us</a>
+                    </div>
+                    <!-- Slide Content End-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Slider Item -->
+    <div class="slider-item" style="background-image:url(/static/images/slider/slider-bg-3.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Slide Content Start -->
+                    <div class="content text-center style">
+                        <h2 class="text-white text-bold mb-2">Best Medical Services</h2>
+                        <p class="tag-text mb-5">Redefining Healthcare with the Best Medical Services, 
+                            <br>Setting the Standard for Outstanding Medical Services.</p>
+                        <a href="{% url 'service' %}" class="btn btn-main btn-white">shop now</a>
+                    </div>
+                    <!-- Slide Content End -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--====  End of Page Slider  ====-->
+
+<section class="cta">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="cta-block">
+                    <div class="emmergency item">
+                        <i class="fa fa-phone"></i>
+                        <h2>Emegency Cases</h2>
+                        <a href="#">+977 - 9825938808</a>
+                        <p>In emergency cases, our Centre is always ready to provide immediate care with a team of dedicated professionals available around the clock to handle any urgent medical needs.</p>
+                    </div>
+                    <div class="top-doctor item">
+                        <i class="fa fa-stethoscope"></i>
+                        <h2>24 Hour Service</h2>
+                        <p>Our Centre offers 24-hour service to ensure that medical care is always available when you need it most. With a dedicated team on standby, we are here to provide urgent care and support at any time, day or night.</p>
+                    </div>
+                    <div class="working-time item">
+                        <i class="fa fa-hourglass-o"></i>
+                        <h2>Working Hours</h2>
+                        <ul class="w-hours">
+                            <li>Sun - Fri   - <span>8:00 - 17:00</span></li>
+                            <li>Saturday   - <span>10:00 - 16:00</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--about section-->
+<section class="feature-section section bg-gray">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-xs-12">
+				<div class="image-content">
+					<div class="section-title text-center">
+						<h3>Best Features
+							<span>of Our Hospital</span>
+						</h3>
+						<p>Dedicated to Delivering the Best in Medical Excellence.<br>
+							24/7 Care, Because Your Health Never Sleeps</p>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="item">
+								<div class="icon-box">
+									<figure>
+										<a href="#">
+											<img src="/static/images/resource/1.png" alt="">
+										</a>
+									</figure>
+								</div>
+								<h6>Orthopedics</h6>
+								<p>Our Orthopedics department specializes in treating a variety of bone, joint, and muscle conditions with advanced techniques and personalized care. Whether it’s a fracture, arthritis, or sports injury, our experts are here to restore your mobility and relieve pain.
+                                     With state-of-the-art technology and a patient-centered approach, we help you get back to an active, healthy life.</p>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="item">
+								<div class="icon-box">
+									<figure>
+										<a href="#">
+											<img src="/static/images/resource/2.png" alt="">
+										</a>
+									</figure>
+								</div>
+								<h6>Diaginostic</h6>
+								<p>Our Diagnostic services provide accurate and timely results to ensure effective treatment and care. Equipped with state-of-the-art technology and managed by expert professionals, we offer a comprehensive range of tests, including imaging, pathology, and advanced screenings.
+                                     Trust us for precise diagnostics that support your journey to better health.</p>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="item">
+								<div class="icon-box">
+									<figure>
+										<a href="#">
+											<img src="/static/images/resource/3.png" alt="">
+										</a>
+									</figure>
+								</div>
+								<h6>Psycology</h6>
+								<p>Our Psychology department is dedicated to supporting your mental well-being with compassionate care and evidence-based therapies. Our team of experienced psychologists works with you to address a variety of concerns, from stress and anxiety to depression and life transitions.
+                                     We offer a safe, supportive environment where you can explore your emotions and work toward a healthier mind and balanced life.</p>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="item">
+								<div class="icon-box">
+									<figure>
+										<a href="#">
+											<img src="/static/images/resource/4.png" alt="">
+										</a>
+									</figure>
+								</div>
+								<h6>General Treatment</h6>
+								<p>Our General Treatment services focus on providing comprehensive care for a wide range of health conditions. Whether it’s managing chronic illnesses, treating infections, or offering preventive care, our skilled team is here to ensure your overall health and well-being.
+                                     With a personalized approach and commitment to quality care, we help you maintain a healthy lifestyle and recover quickly.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--End about section-->
+
+<!--Start about us area-->
+<section class="service-tab-section section">
+    <div class="outer-box clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Nav tabs -->
+                    <div class="tabs">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#dormitory"  data-toggle="tab">dormitory</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#orthopedic" data-toggle="tab">orthopedic</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#sonogram" data-toggle="tab">sonogram</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#x-ray" data-toggle="tab">x-ray</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#diagnostic" data-toggle="tab">diagnostic</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Start single tab content-->
+                    <div class="tab-content">
+                        <div class="service-box tab-pane fade in active row" id="dormitory">
+                            <div class="col-md-6">
+                                <img class="img-responsive" src="/static/images/services/service-one.jpg" alt="service-image">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="contents">
+                                    <div class="section-title">
+                                        <h3>dormitory</h3>
+                                    </div>
+                                    <div class="text">
+                                        <p>Our dormitory provides a comfortable and secure living space for all residents, offering a peaceful environment conducive to rest and study. 
+                                            Equipped with essential amenities, each room is designed to maximize comfort and privacy.
+                                             Conveniently located within easy access to hospital facilities, it ensures a smooth and stress-free stay.</p>
+                                            <p>Designed with your needs in mind, our dormitory features modern facilities, including Wi-Fi, laundry services, and common areas for relaxation. 
+                                                Whether you’re here for short-term or extended stays, we prioritize your comfort and well-being to make your time with us as pleasant as possible.</p>
+                                    </div>
+                                    <ul class="content-list">
+                                        <li>
+                                            <i class="fa fa-dot-circle-o"></i>Close to hospital facilities for easy access.</li>
+                                        <li>
+                                            <i class="fa fa-dot-circle-o"></i>Wi-Fi, laundry, and private rooms for a relaxed stay.</li>
+                                        <li>
+                                            <i class="fa fa-dot-circle-o"></i>Round-the-clock security and support staff.</li>
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--End single tab content-->
+                        <!--Start single tab content-->
+                        <div class="service-box tab-pane fade in" id="orthopedic">
+                            <div class="col-md-6">
+                                <img class="img-responsive" src="/static/images/services/service-two.jpg" alt="service-image">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="contents">
+                                    <div class="section-title">
+                                        <h3>orthopedic</h3>
+                                    </div>
+                                    <div class="text">
+                                        <p>Our Orthopedic department offers expert care for bone, joint, and muscle conditions. We provide both surgical and non-surgical treatments tailored to each patient's needs.
+                                             Our goal is to restore mobility and improve quality of life.</p>
+                                        <p>With advanced technology and skilled specialists, we treat fractures, arthritis, and sports injuries.
+                                             From diagnosis to recovery, we prioritize your comfort and healing every step of the way</p>
+                                    </div>
+                                    <ul class="content-list">
+                                        <li>
+                                            <i class="fa fa-dot-circle-o"></i>Specialized treatment for bones, joints, and muscles</li>
+                                        <li>
+                                            <i class="fa fa-dot-circle-o"></i>Cutting-edge equipment for accurate diagnosis and treatment.</li>
+                                        <li>
+                                            <i class="fa fa-dot-circle-o"></i>Tailored solutions to restore mobility and improve well-being</li>
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--End single tab content-->
+                        <!--Start single tab content-->
+                        <div class="service-box tab-pane fade in" id="sonogram">
+                            <div class="col-md-6">
+                                <img class="img-responsive" src="/static/images/services/service-three.jpg" alt="service-image">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="contents">
+                                    <div class="section-title">
+                                        <h3>sonogram</h3>
+                                    </div>
+                                    <div class="text">
+                                        <p>Our Sonogram service uses advanced ultrasound technology to provide clear, non-invasive imaging of internal organs and tissues. It’s an essential tool for diagnosing conditions related to the abdomen, heart, and more. 
+                                            With minimal discomfort, we ensure accurate results for timely care.</p>
+                                        <p>Performed by skilled technicians, sonograms help detect abnormalities, monitor pregnancy, and evaluate organ health. 
+                                            We prioritize your comfort while delivering precise images to support your medical journey.</p>
+                                    </div>
+                                    <ul class="content-list">
+                                        <li>
+                                            <i class="fa fa-dot-circle-o"></i>Safe and painless procedure for detailed results.</li>
+                                        <li>
+                                            <i class="fa fa-dot-circle-o"></i>Clear, high-quality images for precise analysis.</li>
+                                        <li>
+                                            <i class="fa fa-dot-circle-o"></i>Performed by experienced professionals for reliable results.</li>
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--End single tab content-->
+                        <!--Start single tab content-->
+                        <div class="service-box tab-pane fade in" id="x-ray">
+                            <div class="col-md-6">
+                                <img class="img-responsive" src="/static/images/services/service-four.jpg" alt="service-image">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="contents">
+                                    <div class="section-title">
+                                        <h3>x-ray</h3>
+                                    </div>
+                                    <div class="text">
+                                        <p>Our X-ray service provides fast, accurate imaging to help diagnose a wide range of conditions. Using minimal radiation, we capture clear images of bones, joints, and organs for effective treatment planning. 
+                                            It's a quick, non-invasive procedure designed to support your healthcare needs.</p>
+                                        <p>Performed by experienced radiologists, our X-ray imaging ensures precise diagnosis and helps monitor progress in conditions such as fractures, infections, and respiratory issues. 
+                                            We focus on delivering reliable results with minimal discomfort.</p>
+                                    </div>
+                                    <ul class="content-list">
+                                        <li>
+                                            <i class="fa fa-dot-circle-o"></i>Fast results for timely diagnosis.</li>
+                                        <li>
+                                            <i class="fa fa-dot-circle-o"></i>Safe imaging with minimal exposure.</li>
+                                        <li>
+                                            <i class="fa fa-dot-circle-o"></i>Clear images for accurate assessment and treatment.</li>
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--End single tab content-->
+                        <!--Start single tab content-->
+                        <div class="service-box tab-pane fade in" id="diagnostic">
+                            <div class="col-md-6">
+                                <img class="img-responsive" src="/static/images/services/service-five.jpg" alt="service-image">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="contents">
+                                    <div class="section-title">
+                                        <h3>diagnostic</h3>
+                                    </div>
+                                    <div class="text">
+                                        <p>Our Diagnostic services offer a comprehensive range of tests to accurately detect and monitor various health conditions. 
+                                            From blood tests to imaging, we use advanced technology to ensure precise results. 
+                                            Our goal is to provide timely and reliable diagnostics to guide your treatment.</p>
+                                        <p>With a team of skilled professionals, we ensure your comfort throughout the diagnostic process. 
+                                            Whether routine check-ups or specialized tests, we are committed to delivering accurate and efficient results to support your health journey.</p>
+                                    </div>
+                                    <ul class="content-list">
+                                        <li>
+                                            <i class="fa fa-dot-circle-o"></i>A wide range of diagnostic options for thorough care.</li>
+                                        <li>
+                                            <i class="fa fa-dot-circle-o"></i>Cutting-edge equipment for accurate and reliable results.</li>
+                                        <li>
+                                            <i class="fa fa-dot-circle-o"></i>Skilled professionals dedicated to your health and comfort.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End single tab content-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End about us area-->
+
+
+<!--team section-->
+<section class="team-section section">
+    <div class="container">
+        <div class="section-title text-center">
+            <h3>Our Expert
+                <span>Doctors</span>
+            </h3>
+            <p>Our expert doctors are highly trained professionals dedicated to providing personalized, high-quality care.
+                <br>With years of experience and a commitment to your health, they ensure the best possible outcomes for every patient.</p>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="team-member">
+                    <img src="/static/images/team/doctor-2.jpg" alt="doctor" class="img-responsive">
+                    <div class="contents text-center">
+                    <h4>Dr. Bhagwan Koirala</h4>
+                    </div>
+                    <div class="contents">
+                        <ul class="content-list">
+                            <li>
+                                <i class="fa fa-dot-circle-o"></i> NMC Number - 1362</li>
+                            <li>
+                                <i class="fa fa-dot-circle-o"></i> Qualification - MS, MD Fellow, Baystate Medical Centre, TUFTS University, U.S.A.</li>
+                            <li>
+                                <i class="fa fa-dot-circle-o"></i> Speciality - Cardiothoracic & Vascular Surgery</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="team-member">
+                    <img src="/static/images/team/doctor-lab-3.jpg" alt="doctor" class="img-responsive">
+                    <div class="contents text-center">
+                    <h4>Dr. Nishma Agrawal</h4>
+                    </div>
+                    <div class="contents">
+                        <ul class="content-list">
+                            <li>
+                                <i class="fa fa-dot-circle-o"></i> NMC Number - 3874  </li>
+                            <li>
+                                <i class="fa fa-dot-circle-o"></i> Qualification - MBBS, MS (Orthopedics), Fellowship in Joint Replacement Surgery, AIIMS, India</li>
+                            <li>
+                                <i class="fa fa-dot-circle-o"></i> Orthopedic Surgery & Joint Replacement</li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="team-member">
+                    <img src="/static/images/team/event-2.jpg" alt="doctor" class="img-responsive">
+                    <div class="contents text-center">
+                    <h4>Dr. Shreya Thakur</h4>
+                    </div>
+                    <div class="contents">
+                        <ul class="content-list">
+                            <li>
+                                <i class="fa fa-dot-circle-o"></i> NMC Number - 2547  </li>
+                            <li>
+                                <i class="fa fa-dot-circle-o"></i> MBBS, MD (Gynecology), Fellowship in Reproductive Medicine, Harvard Medical School, U.S.A.</li>
+                            <li>
+                                <i class="fa fa-dot-circle-o"></i> Obstetrics & Gynecology  </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End team section-->
+
+<!-- Contact Section -->
+<section class="appoinment-section section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="accordion-section">
+    <div class="section-title">
+        <h3>FAQ</h3>
+    </div>
+    <div class="accordion-holder">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Why Should I choose Medical Health
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        Choosing Medical Health means prioritizing your well-being with trusted,
+                         comprehensive care. We combine advanced medical technology with a team of skilled professionals to deliver exceptional healthcare services. 
+                         From preventive care to specialized treatments, we are dedicated to meeting your unique needs with compassion and precision. 
+                         Your health is our top priority, and we strive to provide a safe, supportive environment for every step of your journey toward better health.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            What are the Centre’s visiting hours?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                        Our Centre welcomes visitors during dedicated hours to ensure a comfortable and supportive environment for patients and their loved ones.
+                         Visiting hours are thoughtfully designed to balance rest and recovery with the joy of companionship. 
+                         On Saturdays, many of our doctors are on leave as it is a public holiday, allowing them precious time with their families. 
+                         However, we are fully active and available on all other days to provide the highest quality care. 
+                        We kindly encourage you to plan your visits accordingly and appreciate your understanding as we prioritize the well-being of both our patients and healthcare providers
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false"
+                            aria-controls="collapseThree">
+                            How many visitors are allowed?
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="panel-body">
+                        To ensure a comfortable and healing environment for all patients,
+                         we allow a limited number of visitors at a time. Typically, two visitors per patient are permitted during visiting hours.
+                          This helps maintain a peaceful atmosphere while allowing loved ones to offer their support.
+                         We kindly ask that you cooperate with our staff to ensure a smooth and respectful visiting experience for everyone.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            
+
+</div>                        
+            </div>
+        </div>                    
+    </div>
+</section>
+
+<!-- End Contact Section -->
+
+<!--footer-main-->
+<footer class="footer-main">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="about-widget">
+            <div class="footer-logo">
+              <figure>
+                <a href="{% url 'home' %}">
+                  <img src="/static/images/logo-2.png" alt="">
+
+                </a>
+              </figure>
+            </div>
+            <p>Your Path to Better Health Begins Here</p>
+            <ul class="location-link">
+              <li class="item">
+                <i class="fa fa-map-marker"></i>
+                <p>Birtamode, Jhapa, Nepal</p>
+              </li>
+              <li class="item">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                <a href="#">
+                  <p>Support@medica.com</p>
+                </a>
+              </li>
+              <li class="item">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <p>(+977)-9746353958</p>
+              </li>
+            </ul>
+            <ul class="list-inline social-icons">
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+              <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <h6>Services</h6>
+          <ul class="menu-link">
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Orthopadic Liabilities</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Dental Clinic</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Dormamu Clinic</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Psycological Clinic</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Gynaecological Clinic</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="social-links">
+            <h6>Developers</h6>
+            <ul>
+              <li class="item">
+                <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      <img class="media-object" src="/static/images/dev/Bishal.jpg" alt="post-thumb">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading"><a href="#">Bishal Kumar Shah</a></h4>
+                    <p>Contribution: Frontend</p>
+                  </div>
+                </div>
+              </li>
+              <li class="item">
+                <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      <img class="media-object" src="/static/images/dev/Anjal.jpg" alt="post-thumb">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">
+                      <a href="#">Anjal Rajbanshi</a>
+                    </h4>
+                    <p>Contribution: Backend </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container clearfix">
+      <div class="copyright-text">
+        <p>&copy; Copyright 2025. All Rights Reserved by
+          <a href="{% url 'home' %}">Medica</a>
+        </p>
+      </div>
+      <ul class="footer-bottom-link">
+        <li>
+            <a href="{% url 'home' %}">Home</a>
+        </li>
+        <li>
+            <a href="{% url 'about' %}">About</a>
+        </li>
+        <li>
+            <a href="{% url 'contact' %}">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<!--End footer-main-->
+
+</div>
+<!--End pagewrapper-->
+
+
+<!--Scroll to top-->
+<div class="scroll-to-top scroll-to-target" data-target=".header-top">
+  <span class="icon fa fa-angle-up"></span>
+</div>
+
+{% load static %}
+<script src="{% static 'plugins/jquery.js' %}"></script>
+<script src="{% static 'plugins/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-select.min.js' %}"></script>
+<!-- Slick Slider -->
+<script src="{% static 'plugins/slick/slick.min.js' %}"></script>
+<!-- FancyBox -->
+<script src="{% static 'plugins/fancybox/jquery.fancybox.min.js' %}"></script>
+<!-- Google Maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+<script src="{% static 'plugins/google-map/gmap.js' %}"></script>
+<script src="{% static 'plugins/validate.js' %}"></script>
+<script src="{% static 'plugins/wow.js' %}"></script>
+<script src="{% static 'plugins/jquery-ui.js' %}"></script>
+<script src="{% static 'plugins/timePicker.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
+

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    {% extends "socialaccount/base_entrance.html" %}
+    {% load i18n %}
+    {% load allauth %}
+    {% block head_title %}
+        {% trans "Signup" %}
+    {% endblock head_title %}
+    
+    {% block extrahead %}
+    <style>
+        /* General container styling */
+        .signup-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+        }
+
+        /* Title styling */
+        .signup-container h1 {
+            font-size: 28px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Paragraph styling */
+        .signup-container p {
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Form field styling */
+        .signup-form .form-fields {
+            margin-bottom: 20px;
+        }
+
+        .form-field {
+            margin-bottom: 15px;
+        }
+
+        .form-field label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-field input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        /* Error message styling */
+        .field-errors {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* Submit button styling */
+        .signup-btn {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .signup-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 600px) {
+            .signup-container {
+                margin: 20px;
+                padding: 15px;
+            }
+
+            .signup-btn {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% endblock extrahead %}
+
+{% block content %}
+<div class="signup-container">
+    <h1>{% trans "Sign Up" %}</h1>
+    <p>
+        {% blocktrans with provider_name=account.get_provider.name site_name=site.name %}
+        You are about to use your {{ provider_name }} account to log in to {{ site_name }}. As a final step, please complete the following form:
+        {% endblocktrans %}
+    </p>
+
+    <form method="post" action="{% url 'socialaccount_signup' %}" class="signup-form">
+        {% csrf_token %}
+        <div class="form-fields">
+            {% for field in form %}
+                <div class="form-field">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="field-errors">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        {{ redirect_field }}
+
+        <button type="submit" class="signup-btn">{% trans "Sign Up" %}</button>
+    </form>
+</div>
+{% endblock content %}
+</body>
+</html>
