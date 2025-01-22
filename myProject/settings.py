@@ -156,7 +156,7 @@ STRIPE_SECRET_KEY = 'your-secret-key'
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-            'client_id': 'http://836882880321-ujmsrooep6vq08lvgr62m90h9ue1b8qh.apps.googleusercontent.com',
+            'client_id': '836882880321-ujmsrooep6vq08lvgr62m90h9ue1b8qh.apps.googleusercontent.com',
             'secret': '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',
             'key': '' 
         },
