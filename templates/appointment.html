@@ -245,7 +245,7 @@
                         <option value="esewa">eSewa</option>
                         <option value="khalti">Khalti</option>
                         <option value="connectips">ConnectIPS</option>
-                        <option value="fonepay">IMEpay</option>
+                        <option value="IMEpay">IMEpay</option>
                       </select>
                     </div>
                     
@@ -345,7 +345,7 @@
         esewa: "/static/images/payment/esewa-qr.png",
         khalti: "/static/images/payment/khalti-qr.png",
         connectips: "/static/images/payment/connectips-qr.png",
-        fonepay: "/static/images/payment/IMEpay-qr.png",
+        IMEpay: "/static/images/payment/IMEpay-qr.png",
       };
   
       if (selectedPayment in qrCodeImages) {
@@ -408,6 +408,7 @@
 <!--End team section-->
 
 <!--footer-main-->
+<!--footer-main-->
 <footer class="footer-main">
   <div class="footer-top">
     <div class="container">
@@ -418,6 +419,7 @@
               <figure>
                 <a href="{% url 'home' %}">
                   <img src="/static/images/logo-2.png" alt="">
+
                 </a>
               </figure>
             </div>
@@ -509,24 +511,23 @@
       </div>
     </div>
   </div>
-
   <div class="footer-bottom">
     <div class="container clearfix">
       <div class="copyright-text">
-        <p>&copy; Copyright 2018. All Rights Reserved by
-          <a href="index.html">Medic</a>
+        <p>&copy; Copyright 2025. All Rights Reserved by
+          <a href="{% url 'home' %}">Medica</a>
         </p>
       </div>
       <ul class="footer-bottom-link">
-            <li>
-                  <a href="{% url 'home' %}">Home</a>
-              </li>
-              <li>
-                  <a href="{% url 'about' %}">About</a>
-              </li>
-              <li>
-                  <a href="{% url 'contact' %}">Contact</a>
-              </li>
+        <li>
+            <a href="{% url 'home' %}">Home</a>
+        </li>
+        <li>
+            <a href="{% url 'about' %}">About</a>
+        </li>
+        <li>
+            <a href="{% url 'contact' %}">Contact</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -561,3 +562,4 @@
 </body>
 
 </html>
+

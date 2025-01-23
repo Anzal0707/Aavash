@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Medic | Medical HTML Template</title>
+  <title>Medica | Blog</title>
 
   
   <!-- mobile responsive meta -->
@@ -42,7 +42,7 @@
 <div class="header-top">
       <div class="container clearfix">
             <div class="top-left">
-                  <h6>Opening Hours : Saturday to Tuesday - 8am to 10pm</h6>
+                  <h6>Opening Hours : Sunday to Friday - 8am to 10pm</h6>
             </div>
             <div class="top-right">
                   <ul class="social-links">
@@ -184,31 +184,6 @@
                   <li>
                       <a href="{% url 'contact' %}">Contact</a>
                   </li>
-          
-                        <!-- <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
-                                    <span class="caret"></span>
-                              </a>
-                              <ul class="dropdown-menu">
-                                    <li>
-                                          <a href="#">Action</a>
-                                    </li>
-                                    <li>
-                                          <a href="#">Another action</a>
-                                    </li>
-                                    <li>
-                                          <a href="#">Something else here</a>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li>
-                                          <a href="#">Separated link</a>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li>
-                                          <a href="#">One more separated link</a>
-                                    </li>
-                              </ul>
-                        </li> -->
                   </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -352,6 +327,7 @@
 <!-- End Contact Section -->
 
 <!--footer-main-->
+<!--footer-main-->
 <footer class="footer-main">
   <div class="footer-top">
     <div class="container">
@@ -362,10 +338,11 @@
               <figure>
                 <a href="{% url 'home' %}">
                   <img src="/static/images/logo-2.png" alt="">
+
                 </a>
               </figure>
             </div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, temporibus?</p>
+            <p>Your Path to Better Health Begins Here</p>
             <ul class="location-link">
               <li class="item">
                 <i class="fa fa-map-marker"></i>
@@ -374,12 +351,12 @@
               <li class="item">
                 <i class="fa fa-envelope-o" aria-hidden="true"></i>
                 <a href="#">
-                  <p>Support@medic.com</p>
+                  <p>Support@medica.com</p>
                 </a>
               </li>
               <li class="item">
                 <i class="fa fa-phone" aria-hidden="true"></i>
-                <p>(88017) +123 4567</p>
+                <p>(+977)-9746353958</p>
               </li>
             </ul>
             <ul class="list-inline social-icons">
@@ -415,60 +392,61 @@
             </li>
           </ul>
         </div>
-        <div class="social-links">
-          <h6>Developers</h6>
-          <ul>
-            <li class="item">
-              <div class="media">
-                <div class="media-left">
-                  <a href="#">
-                    <img class="media-object" src="/static/images/dev/Bishal.jpg" alt="post-thumb">
-                  </a>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="social-links">
+            <h6>Developers</h6>
+            <ul>
+              <li class="item">
+                <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      <img class="media-object" src="/static/images/dev/Bishal.jpg" alt="post-thumb">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading"><a href="#">Bishal Kumar Shah</a></h4>
+                    <p>Contribution: Frontend</p>
+                  </div>
                 </div>
-                <div class="media-body">
-                  <h4 class="media-heading"><a href="#">Bishal Kumar Shah</a></h4>
-                  <p>Contribution: Frontend</p>
+              </li>
+              <li class="item">
+                <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      <img class="media-object" src="/static/images/dev/Anjal.JPG" alt="post-thumb">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">
+                      <a href="#">Anjal Rajbanshi</a>
+                    </h4>
+                    <p>Contribution: Backend </p>
+                  </div>
                 </div>
-              </div>
-            </li>
-            <li class="item">
-              <div class="media">
-                <div class="media-left">
-                  <a href="#">
-                    <img class="media-object" src="/static/images/dev/Anjal.JPG" alt="post-thumb">
-                  </a>
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading">
-                    <a href="#">Anjal Rajbanshi</a>
-                  </h4>
-                  <p>Contribution: Backend </p>
-                </div>
-              </div>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
   <div class="footer-bottom">
     <div class="container clearfix">
       <div class="copyright-text">
-        <p>&copy; Copyright 2018. All Rights Reserved by
-          <a href="index.html">Medic</a>
+        <p>&copy; Copyright 2025. All Rights Reserved by
+          <a href="{% url 'home' %}">Medica</a>
         </p>
       </div>
       <ul class="footer-bottom-link">
-            <li>
-                  <a href="{% url 'home' %}">Home</a>
-              </li>
-              <li>
-                  <a href="{% url 'about' %}">About</a>
-              </li>
-              <li>
-                  <a href="{% url 'contact' %}">Contact</a>
-              </li>
+        <li>
+            <a href="{% url 'home' %}">Home</a>
+        </li>
+        <li>
+            <a href="{% url 'about' %}">About</a>
+        </li>
+        <li>
+            <a href="{% url 'contact' %}">Contact</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -503,3 +481,4 @@
 </body>
 
 </html>
+
