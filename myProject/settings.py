@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-7#3jb9sd-&c8jxpx$q1_m5s+$t1e4rd%nzwp23q8r-380csr@=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['aavash-wtm1.onrender.com', 'localhost', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['aavash-wtm1.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -156,7 +156,8 @@ STRIPE_SECRET_KEY = 'your-secret-key'
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-            
+            'client_id': '906112129662-ki37du46lmqe9nrppmvo250jtomdfn83.apps.googleusercontent.com',
+            'secret': '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',
             'key': '' 
         },
         'AUTH_PARAMS': {

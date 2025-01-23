@@ -15,7 +15,7 @@
         <div class="container clearfix">
               <div class="logo">
                     <figure>
-                          <a href="index.html">
+                        <a href="{% url 'home' %}">
                                 <img src="/static/images/logo.png" alt="" width="130">
                           </a>
                     </figure>
@@ -162,7 +162,7 @@ Status: ${status}
         <!-- Book Appointment Button -->
         <div class="book-appointment-container">
             <a href="{% url 'appointment' %}" class="button book-button">
-                <img src="{% static 'images/book.jpg' %}" alt="Book Appointment">
+                <img src="{% static 'images/Book.jpg' %}" alt="Book Appointment">
         
             </a>
         </div>

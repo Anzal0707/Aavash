@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Medic | Medical HTML Template</title>
+  <title>Medica | our Team</title>
 
   
   <!-- mobile responsive meta -->
@@ -104,7 +104,7 @@
       <div class="container clearfix">
             <div class="logo">
                   <figure>
-                        <a href="index.html">
+                    <a href="{% url 'home' %}">
                               <img src="/static/images/logo.png" alt="" width="130">
                         </a>
                   </figure>
@@ -160,28 +160,29 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
-                        <li class="active">
-                              <a href="{% url 'home' %}">Home</a>
-                                </li>
-                                <li>
-                                    <a href="{% url 'about' %}">About</a>
-                                </li>
-                                <li>
-                                    <a href="{% url 'service' %}">Service</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="{% url 'team' %}">Team</a>
-                                </li>
-                                <li>
-                                    <a href="{% url 'appointment' %}">Appointment</a>
-                                </li>
-                                <li>
-                                    <a href="{% url 'blog' %}">Blog</a>
-                                </li>
-                                <li>
-                                    <a href="{% url 'contact' %}">Contact</a>
-                                </li>
+                           <li class="active">
+                             <a href="{% url 'home' %}">Home</a>
+                         </li>
+                         <li class="active">
+                             <a href="{% url 'about' %}">About</a>
+                         </li>
+                         <li class="active">
+                             <a href="{% url 'service' %}">Service</a>
+                         </li>
+            
+                         <li class="active">
+                             <a href="{% url 'team' %}">Team</a>
+                         </li>
+                         <li class="active">
+                             <a href="{% url 'appointment' %}">Appointment</a>
+                         </li>
+                         <li class="active">
+                             <a href="{% url 'blog' %}">Blog</a>
+                         </li>
+                         <li class="active">
+                             <a href="{% url 'contact' %}">Contact</a>
+                          </li>
+          
                         <!-- <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
                                     <span class="caret"></span>
@@ -451,7 +452,7 @@
                 <div class="media">
                   <div class="media-left">
                     <a href="#">
-                      <img class="media-object" src="/static/images/dev/Anjal.jpg" alt="post-thumb">
+                      <img class="media-object" src="/static/images/dev/Anjal.JPG" alt="post-thumb">
                     </a>
                   </div>
                   <div class="media-body">

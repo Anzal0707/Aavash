@@ -135,32 +135,39 @@
 
   .book-appointment-container:hover {
     transform: scale(1.05);
+    
   }
-  
   .download-btn {
     padding: 10px 20px;
     background-color: #4caf50;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 2rem;
+    font-size: 1.2rem;
     cursor: pointer;
-    padding-right: 20px;
-    margin-left: 300px;
-    margin-bottom: 20px;
     text-decoration: none;
-    display: inline-block; /* Ensure it's inline with other content */
+    display: inline-block;
+    margin-top: 10px;
     transition: background-color 0.3s, transform 0.3s;
-}
-
-.download-btn:hover {
+  }
+  
+  .download-btn:hover {
     background-color: #45a049;
     transform: scale(1.05);
-}
-
-.download-btn:active {
+  }
+  
+  .download-btn:active {
     transform: scale(1);
-}
+  }
+  
+  @media (max-width: 768px) {
+    .download-btn {
+      font-size: 1rem;
+      padding: 8px 15px;
+    }
+  }
+
+ 
 /* Report Container */
 .report-container {
     margin-top: 30px;
