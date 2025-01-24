@@ -3646,4 +3646,9 @@ li {
   }
 }
 
+.block {
+  color: black;
+  margin-top: -80px;
+  text-transform: uppercase;
+}
 /*# sourceMappingURL=maps/style.css.map */
