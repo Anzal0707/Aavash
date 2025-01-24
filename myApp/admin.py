@@ -4,6 +4,8 @@ from django.utils.html import format_html
 from .models import FollowUp
 from .models import Report
 from .models import ContactMessage
+
+
 # Register your models here.
 
 @admin.register(AppointmentRequest)
@@ -47,3 +49,4 @@ class ContactMessageAdmin(admin.ModelAdmin):
     ordering = ('-submitted_at',)
 
 admin.site.register(ContactMessage, ContactMessageAdmin)
+

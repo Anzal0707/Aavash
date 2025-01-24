@@ -555,23 +555,23 @@ li {
 
 
 .navbar-nav {
-  margin-left: 100px; 
+  margin-left: 120px; 
 }
 
 .navbar-nav > li {
-  margin-left: 20px;
+  margin-left: 35px;
 }
 
 .navbar .navbar-nav li a {
   font-family: "Source Sans Pro", sans-serif;
-  font-size: 17px;
-  color: #fff;
+  font-size: 20px;
+  color: #ffff;
   text-transform: uppercase;
   padding: 25px 20px;
 }
 
 .navbar .navbar-nav li a:hover {
-  color: #fff;
+  color: rgba(15, 1, 1, 0.489);
 }
 
 .navbar .navbar-nav li.active a {

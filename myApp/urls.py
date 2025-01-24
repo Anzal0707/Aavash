@@ -17,8 +17,7 @@ urlpatterns = [
     path('team/', views.team, name='team'),
     path('appointment/', appointment_view, name='appointment'),
     path('upload_report/', views.upload_report, name='upload_report'),
-    path('blog/', views.blog, name='blog'),
-    path('contact/',contact_view, name='contact')
+    path('contact/',contact_view, name='contact'),
 ] 
 if settings.DEBUG:
      urlpatterns +=  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
