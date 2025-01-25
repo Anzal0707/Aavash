@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <style>
+        /* General body styling */
+        body {
+            background-color: #f4f7fc; /* Light grayish blue background */
+            font-family: 'Arial', sans-serif; /* Clean and modern font */
+            color: #090404; /* Dark text color */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Sign-in container */
+        .signIn {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff; /* White background */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        /* Title styling */
+        h1 {
+            text-align: center;
+            color: #ad19a1; /* Dark blue text */
+            margin-bottom: 20px;
+        }
+
+        /* Paragraph styling */
+        p {
+            text-align: center;
+            color: #090404;
+            font-size: 1rem;
+        }
+
+        /* Submit button styling */
+            button[type="submit"] {
+            display: block;
+            width: 15%; /* Smaller width */
+            padding: 10px; /* Adjusted padding */
+            background-color: #16911b; /* Green background */
+            color: white; /* White text */
+            font-size: 1rem; /* Slightly smaller text size */
+            font-weight: bold; /* Bold font */
+            text-transform: uppercase; /* Uppercase text */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+            margin: 10px auto; /* Center align with margin */
+           
+        }
+    
+        button[type="submit"]:hover {
+            background-color: #06750c; /* Darker green on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+    
+        button[type="submit"]:active {
+            background-color: #3e8e41; /* Even darker green on click */
+            transform: scale(1); /* Reset scale on click */
+        }
+
+        /* Make button responsive on smaller screens */
+        @media (max-width: 600px) {
+            button[type="submit"] {
+                width: 90%; /* Adjust button width for small screens */
+                font-size: 0.9rem; /* Reduce font size slightly */
+            }
+        }
+    </style>
+</head>
+<body>
+          {% extends "account/base_entrance.html" %}
+        {% load i18n %}
+
+
+
+    <div class="form">
+    {% load allauth account %}
+    {% block head_title %}
+        {% trans "Sign In" %}
+    {% endblock head_title %}
+    {% block content %}
+        {% element h1 %}
+            {% trans "Sign In" %}
+        {% endelement %}
+        {% if not SOCIALACCOUNT_ONLY %}
+            {% setvar link %}
+                <a href="{{ signup_url }}">
+                {% endsetvar %}
+                {% setvar end_link %}
+                </a>
+            {% endsetvar %}
+            {% element p %}
+                {% blocktranslate %}If you have not created an account yet, then please {{ link }}sign up{{ end_link }} first.{% endblocktranslate %}
+            {% endelement %}
+            {% url 'account_login' as login_url %}
+            {% element form form=form method="post" action=login_url tags="entrance,login" %}
+                {% slot body %}
+                    {% csrf_token %}
+                    {% element fields form=form unlabeled=True %}
+                    {% endelement %}
+                    {{ redirect_field }}
+                {% endslot %}
+                {% slot actions %}
+                    {% element button type="submit" tags="prominent,login" %}
+                        {% trans "Sign In" %}
+                    {% endelement %}
+                {% endslot %}
+            {% endelement %}
+        {% endif %}
+        {% if LOGIN_BY_CODE_ENABLED or PASSKEY_LOGIN_ENABLED %}
+            {% element hr %}
+            {% endelement %}
+            {% element button_group vertical=True %}
+                {% if PASSKEY_LOGIN_ENABLED %}
+                    {% element button type="submit" form="mfa_login" id="passkey_login" tags="prominent,login,outline,primary" %}
+                        {% trans "Sign in with a passkey" %}
+                    {% endelement %}
+                {% endif %}
+                {% if LOGIN_BY_CODE_ENABLED %}
+                    {% element button href=request_login_code_url tags="prominent,login,outline,primary" %}
+                        {% trans "Mail me a sign-in code" %}
+                    {% endelement %}
+                {% endif %}
+            {% endelement %}
+        {% endif %}
+        {% if SOCIALACCOUNT_ENABLED %}
+            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+        {% endif %}
+    {% endblock content %}
+    {% block extra_body %}
+        {{ block.super }}
+        {% if PASSKEY_LOGIN_ENABLED %}
+            {% include "mfa/webauthn/snippets/login_script.html" with button_id="passkey_login" %}
+        {% endif %}
+    {% endblock %}
+    </div>
+</body>
+</html>

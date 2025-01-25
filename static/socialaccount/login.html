@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+            button[type="submit"] {
+            display: block;
+            width: 15%; /* Smaller width */
+            padding: 10px; /* Adjusted padding */
+            background-color: #16911b; /* Green background */
+            color: white; /* White text */
+            font-size: 1rem; /* Slightly smaller text size */
+            font-weight: bold; /* Bold font */
+            text-transform: uppercase; /* Uppercase text */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+            margin: 10px auto; /* Center align with margin */
+           
+        }
+    
+        button[type="submit"]:hover {
+            background-color: #06750c; /* Darker green on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+    
+        button[type="submit"]:active {
+            background-color: #3e8e41; /* Even darker green on click */
+            transform: scale(1); /* Reset scale on click */
+        }
+
+        /* Make button responsive on smaller screens */
+        @media (max-width: 600px) {
+            button[type="submit"] {
+                width: 90%; /* Adjust button width for small screens */
+                font-size: 0.9rem; /* Reduce font size slightly */
+            }
+        }
+
+    </style>
+            
+</head>
+<body>          
+    {% extends "socialaccount/base_entrance.html" %}
+    {% load i18n %}
+    
+    {% load allauth %}
+    {% block head_title %}
+        {% trans "Sign In" %}
+
+    <div>
+    {% endblock head_title %}
+    {% block content %}
+        {% if process == "connect" %}
+            {% element h1 %}
+                {% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}
+            {% endelement %}
+            {% element p %}
+                {% blocktrans with provider.name as provider %}You are about to connect a new third-party account from {{ provider }}.{% endblocktrans %}
+            {% endelement %}
+        {% else %}
+            {% element h1 %}
+                {% blocktrans with provider.name as provider %}Sign In Via {{ provider }}{% endblocktrans %}
+            {% endelement %}
+            {% element p %}
+                {% blocktrans with provider.name as provider %}You are about to sign in using a third-party account from {{ provider }}.{% endblocktrans %}
+            {% endelement %}
+        {% endif %}
+        {% element form method="post" no_visible_fields=True %}
+            {% slot actions %}
+                {% csrf_token %}
+           
+                {% element button type="submit" %}
+                {% trans "Continue" %}
+            
+                {% endelement %}
+            {% endslot %}
+        {% endelement %}
+    {% endblock content %}
+    </div>
+</body>
+</html>

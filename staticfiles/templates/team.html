@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Medica | our Team</title>
+
+  
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <!-- Slick Carousel -->
+  {% load static %}
+
+  <link rel="stylesheet" href="{% static 'plugins/slick/slick.css' %}">
+  <link rel="stylesheet" href="{% static 'plugins/slick/slick-theme.css' %}">
+  
+  <!-- FancyBox -->
+  <link rel="stylesheet" href="{% static 'plugins/fancybox/jquery.fancybox.min.css' %}">
+  
+  <!-- Stylesheets -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+  
+  </head>
+
+<body>
+  <div class="page-wrapper">
+    <!-- Preloader -->
+    <!-- <div class="preloader"></div> -->
+    <!-- Preloader -->
+
+   
+
+<!--header top-->
+<div class="header-top">
+      <div class="container clearfix">
+            <div class="top-left">
+                  <h6>Opening Hours : Sunday to Friday - 8am to 10pm</h6>
+            </div>
+            <div class="top-right">
+                  <ul class="social-links">
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-google-plus" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-instagram" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="#">
+                                    <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                              </a>
+                        </li>
+                  </ul>
+                  {% if user.is_authenticated %}
+    <div class="user-profile">
+        <a href="{% url 'account_logout' %}">
+            <!-- Check if user has social account profile image or custom profile image -->
+            <img src="{% if user.socialaccount_set.exists %} 
+                        {% if user.socialaccount_set.first.extra_data.picture %} 
+                            {{ user.socialaccount_set.first.extra_data.picture }} 
+                        {% else %}
+                            /static/images/default-user.png
+                        {% endif %}
+                      {% else %}
+                        {% if user.profile.profile_image %}
+                            {{ user.profile.profile_image.url }}
+                        {% else %}
+                            /static/images/default-user.png
+                        {% endif %}
+                      {% endif %}" 
+                 alt="Profile" class="profile-pic">
+        </a>
+        <span>{{ user.first_name }}</span>
+    </div>
+{% else %}
+    <a href="{% url 'login' %}" class="btn-style-one">Login</a>
+{% endif %}
+            </div>
+      </div>
+</div>
+<!--header top-->
+
+<!--Header Upper-->
+<section class="header-uper">
+      <div class="container clearfix">
+            <div class="logo">
+                  <figure>
+                    <a href="{% url 'home' %}">
+                              <img src="/static/images/logo.png" alt="" width="130">
+                        </a>
+                  </figure>
+            </div>
+            <div class="right-side">
+                  <ul class="contact-info">
+                        <li class="item">
+                              <div class="icon-box">
+                                    <i class="fa fa-envelope-o"></i>
+                              </div>
+                              <strong>Email</strong>
+                              <br>
+                              <a href="#">
+                                    <span>info@medica.com</span>
+                              </a>
+                        </li>
+                        <li class="item">
+                              <div class="icon-box">
+                                    <i class="fa fa-phone"></i>
+                              </div>
+                              <strong>Call Now</strong>
+                              <br>
+                              <span>+ (977) - 9746353958</span>
+                        </li>
+                  </ul>
+                  <div class="link-btn">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'profile' %}" class="btn-style-one">Dashboard</a>
+                        <div class="user-profile"></div>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn-style-one">Appointment</a>
+                    {% endif %}
+                </div>
+            </div>
+      </div>
+</section>
+<!--Header Upper-->
+
+
+<!--Main Header-->
+<nav class="navbar navbar-default">
+      <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                        aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                  </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                           
+                        <li>
+                          <a href="{% url 'home' %}">Home</a>
+                      </li>
+                      <li>
+                          <a href="{% url 'about' %}">About</a>
+                      </li>
+                      <li>
+                          <a href="{% url 'service' %}">Service</a>
+                      </li>
+          
+                      <li  class="active">
+                          <a href="{% url 'team' %}">Team</a>
+                      </li>
+                      <li>
+                          <a href="{% url 'appointment' %}">Appointment</a>
+                      </li>
+                      <li>
+                          <a href="{% url 'contact' %}">Contact</a>
+                      </li>
+              
+              
+                  </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+</nav>
+<!--End Main Header --> 
+
+<!--Page Title-->
+<section class="page-title text-center" style="background-image:url(/static/images/background/3.jpg);">
+    <div class="container">
+        <div class="title-text">
+            <h1>Team</h1>
+            <ul class="title-menu clearfix">
+                  <li>
+                      <a href="{% url 'home' %}">home &nbsp;/</a>
+                  </li>
+                  <li>Team</li>
+              </ul>
+        </div>
+    </div>
+</section>
+<!--End Page Title-->
+
+<section class="team-section section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title text-center">
+                    <h3>Great
+                        <span>Team</span>
+                    </h3>
+                    <p>Our team is the heart of everything we do, bringing together expertise, dedication, and compassion to provide exceptional care.
+                        <br>Each member, from doctors to support staff, works tirelessly to ensure the best outcomes for our patients. 
+                      <br>Together, we create a collaborative and supportive environment that drives excellence in healthcare.</p>
+                </div>
+                <!-- Nav tabs -->
+                <div class="tabs">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#doctor" data-toggle="tab">doctor</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#event-planning" data-toggle="tab">event planning</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#lab" data-toggle="tab">lab</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#marketing" data-toggle="tab">marketing</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <!--Start single tab content-->
+                    <div class="team-members tab-pane fade in active row" id="doctor">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="team-person text-center">
+                                <img src="/static/images/team/doctor-1.jpg" class="img-responsive" alt="team">
+                                <h6>Dr. Sita Shrestha</h6>
+                                <p>Bone Specialist</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="team-person text-center">
+                                <img src="/static/images/team/doctor-2.jpg" class="img-responsive" alt="team">
+                                <h6>Dr. Ramesh Adhikari</h6>
+                                <p>Eye Specialist</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="team-person text-center">
+                                <img src="/static/images/team/doctor-3.jpg" class="img-responsive" alt="team">
+                                <h6>Dr. Sanjay Thapa</h6>
+                                <p>Skin Specialist</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End single tab content-->
+                    <!--Start single tab content-->
+                    <div class="team-members tab-pane fade in row" id="event-planning">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="team-person text-center">
+                                <img src="/static/images/team/event-1.jpg" class="img-responsive" alt="team">
+                                <h6>Dr. Meera Karki</h6>
+                                <p>Manager</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="team-person text-center">
+                                <img src="/static/images/team/event-2.jpg" class="img-responsive" alt="team">
+                                <h6>Dr. Anjali Khadka</h6>
+                                <p>Sr. Manager</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="team-person text-center">
+                                <img src="/static/images/team/event-3.jpg" class="img-responsive" alt="team">
+                                <h6>Dr. Sunita Basnet</h6>
+                                <p>President</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End single tab content-->
+                    <!--Start single tab content-->
+                    <div class="team-members tab-pane fade in row" id="lab">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="team-person text-center">
+                                <img src="/static/images/team/doctor-lab-1.jpg" class="img-responsive" alt="team">
+                                <h6>Dr. Sarita Kunwar</h6>
+                                <p>X-ray</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="team-person text-center">
+                                <img src="/static/images/team/doctor-lab-2.jpg" class="img-responsive" alt="team">
+                                <h6>Dr. Susmita Chhetri</h6>
+                                <p>ultrasound therapy</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="team-person text-center">
+                                <img src="/static/images/team/doctor-lab-3.jpg" class="img-responsive" alt="team">
+                                <h6>Dr. Manju Rijal</h6>
+                                <p>bone therapy</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End single tab content-->
+                    <!--Start single tab content-->
+                    <div class="team-members tab-pane fade in row" id="marketing">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="team-person text-center">
+                                <img src="/static/images/team/doctor-2.jpg" class="img-responsive" alt="team">
+                                <h6>Dr. Ramesh Adhikari</h6>
+                                <p>Eye Specialist</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="team-person text-center">
+                                <img src="/static/images/team/doctor-lab-2.jpg" class="img-responsive" alt="team">
+                                <h6>Dr. Susmita Chhetri</h6>
+                                <p>ultrasound therapy</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="team-person text-center">
+                                <img src="/static/images/team/event-1.jpg" class="img-responsive" alt="team">
+                                <h6>Dr. Meera Karki</h6>
+                                <p>Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End single tab content-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--footer-main-->
+<footer class="footer-main">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="about-widget">
+            <div class="footer-logo">
+              <figure>
+                <a href="{% url 'home' %}">
+                  <img src="/static/images/logo-2.png" alt="">
+  
+                </a>
+              </figure>
+            </div>
+            <p>Your Path to Better Health Begins Here</p>
+            <ul class="location-link">
+              <li class="item">
+                <i class="fa fa-map-marker"></i>
+                <p>Birtamode, Jhapa, Nepal</p>
+              </li>
+              <li class="item">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                <a href="#">
+                  <p>Support@medica.com</p>
+                </a>
+              </li>
+              <li class="item">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <p>(+977)-9746353958</p>
+              </li>
+            </ul>
+            <ul class="list-inline social-icons">
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+              <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <h6>Services</h6>
+          <ul class="menu-link">
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Orthopadic Liabilities</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Dental Clinic</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Dormamu Clinic</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Psycological Clinic</a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>Gynaecological Clinic</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="social-links">
+            <h6>Developers</h6>
+            <ul>
+              <li class="item">
+                <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      <img class="media-object" src="/static/images/dev/Bishal.jpg" alt="post-thumb">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading"><a href="#">Bishal Kumar Shah</a></h4>
+                    <p>Contribution: Frontend</p>
+                  </div>
+                </div>
+              </li>
+              <li class="item">
+                <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      <img class="media-object" src="/static/images/dev/Anjal.JPG" alt="post-thumb">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">
+                      <a href="#">Anjal Rajbanshi</a>
+                    </h4>
+                    <p>Contribution: Backend </p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container clearfix">
+      <div class="copyright-text">
+        <p>&copy; Copyright 2025. All Rights Reserved by
+          <a href="{% url 'home' %}">Medica</a>
+        </p>
+      </div>
+      <ul class="footer-bottom-link">
+        <li>
+            <a href="{% url 'home' %}">Home</a>
+        </li>
+        <li>
+            <a href="{% url 'about' %}">About</a>
+        </li>
+        <li>
+            <a href="{% url 'contact' %}">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </footer>
+  <!--End footer-main-->
+  
+  </div>
+  <!--End pagewrapper-->
+  
+  
+  <!--Scroll to top-->
+  <div class="scroll-to-top scroll-to-target" data-target=".header-top">
+  <span class="icon fa fa-angle-up"></span>
+  </div>
+  
+  {% load static %}
+  <script src="{% static 'plugins/jquery.js' %}"></script>
+  <script src="{% static 'plugins/bootstrap.min.js' %}"></script>
+  <script src="{% static 'plugins/bootstrap-select.min.js' %}"></script>
+  <!-- Slick Slider -->
+  <script src="{% static 'plugins/slick/slick.min.js' %}"></script>
+  <!-- FancyBox -->
+  <script src="{% static 'plugins/fancybox/jquery.fancybox.min.js' %}"></script>
+  <!-- Google Maps -->
+  
+  <script src="{% static 'plugins/validate.js' %}"></script>
+  <script src="{% static 'plugins/wow.js' %}"></script>
+  <script src="{% static 'plugins/jquery-ui.js' %}"></script>
+  <script src="{% static 'plugins/timePicker.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  </body>
+  
+  </html>
+  
+  
