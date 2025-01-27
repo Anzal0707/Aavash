@@ -13,9 +13,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7#3jb9sd-&c8jxpx$q1_m5s+$t1e4rd%nzwp23q8r-380csr@='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['aavash-wtm1.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -159,8 +159,10 @@ STRIPE_SECRET_KEY = 'your-secret-key'
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-           'client_id': '836882880321-ujmsrooep6vq08lvgr62m90h9ue1b8qh.apps.googleusercontent.com',
-            'secret': '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',
+                        
+            'client_id': '906112129662-ki37du46lmqe9nrppmvo250jtomdfn83.apps.googleusercontent.com',
+            'secret': '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',
+
             'key': '' 
         },
         'AUTH_PARAMS': {

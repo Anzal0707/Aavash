@@ -86,6 +86,13 @@
             background-color: #3e8e41; /* Even darker green on click */
             transform: scale(1); /* Reset scale on click */
         }
+
+        @media (max-width: 600px) {
+            button[type="submit"] {
+                width: 90%; /* Adjust button width for small screens */
+                font-size: 0.9rem; /* Reduce font size slightly */
+            }
+        }
     
         /* Form fields styling */
         input, select, textarea {
